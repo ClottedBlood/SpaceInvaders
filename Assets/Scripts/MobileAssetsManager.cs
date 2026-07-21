@@ -11,16 +11,24 @@ public class MovileAssetsManager : MonoBehaviour
 
    private void Awake()
    {
-      #if UNITY_IOS || UNITY_ANDROID
-        foreach (var asset in mobibleAssets)
+     if (Application.isEditor)
         {
-             asset.SetActive(true);
+             SetActiveAssets(desktopAssets, true);
         }
-       #else
-      foreach (van asset in desktopAssets)
+     else if (Application.isMobilePlatform)
         {
-            asset.SetActive(true);
+            SetActiveAssets(mobibleAssets, true);
         }
-       #endif
+     else
+     {
+      SetActiveAssets(desktopAssets, true);
+     }
+   }
+   private void SetActiveAssets(GameObject[] assets, bool isActive)
+   {
+    foreach (var asset in assets)
+    {
+      asset.SetActive(isActive);
+    }
    }
 }
