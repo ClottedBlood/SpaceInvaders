@@ -680,6 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454563615}
   - component: {fileID: 454563616}
+  - component: {fileID: 454563617}
   m_Layer: 0
   m_Name: ReticlePointer
   m_TagString: Untagged
@@ -717,11 +718,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShooterReticlePointer
   ReticleSortingOrder: 32767
   ReticleInteractionLayerMask:
-    serializedVersion: 2
     m_Bits: 8
   reticleSprite: {fileID: 1855091206}
   reticleAnimator: {fileID: 1855091205}
   spriteDistance: 20
+  idleAnimation: Idle
+  enterAnimation: Enter
+  exitAnimation: Exit
+  clickAnimation: Click
+--- !u!114 &454563617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454563614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7405cf5d92ebe445934155a04592d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShooterReticlePointer
+  ReticleSortingOrder: 32767
+  ReticleInteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  reticleSprite: {fileID: 1855091206}
+  reticleAnimator: {fileID: 1855091205}
+  spriteDistance: 10
   idleAnimation: Idle
   enterAnimation: Enter
   exitAnimation: Exit
@@ -1480,7 +1503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1162893676
 MonoBehaviour:
   m_ObjectHideFlags: 0
