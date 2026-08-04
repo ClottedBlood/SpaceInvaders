@@ -11,12 +11,16 @@ public class Asteroid : Enemy
     [SerializeField]
 
     private float damage = 20f;
+    [SerializeField]
+
+    private float distanceToTarget = 30f;
 
     public override void OnEnable()
     {
         base.OnEnable();
         rotateScript.enabled = true;
         animator.Play("Idle", 0, 0f);
+        SoundManager.instance.Play("asteroid_appear");
     }
 
     private void Update()
@@ -44,5 +48,9 @@ public class Asteroid : Enemy
             Destroy();
         }
     }
-
+    public override void positionEnemy(){
+        Vector3 direction = Random.onUnitSphere;
+        float distance = Random.Range(distanceToTarget, distanceToTarget +5f);
+        transform.position = target.position + direction * distance;
+    }
 }
