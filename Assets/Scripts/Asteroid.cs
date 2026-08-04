@@ -32,7 +32,17 @@ public class Asteroid : Enemy
     {
         currentState =  State.Dead;
         rotateScript.enabled = false;
-        animator.Play("Destroy", 0, 0f);
+        base.Destroy();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (currentState == State.Active && other.CompareTag("Player"))
+        {
+            Health playerHealth = other.GetComponent<Health>();
+            playerHealth.TakeDamage(damage);
+            Destroy();
+        }
     }
 
 }

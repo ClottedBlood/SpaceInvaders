@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,10 +8,19 @@ public class Enemy : MonoBehaviour
 
   protected Animator animator;
 
+  private Collider objectCollider;
+
   protected bool IsDead => health.CurrentHealth <= 0;
-   [SerializeField]
+
+  private UnityEvent<Transform> onDeath = new UnityEvent<Transform>();
+ 
+  private UnityEvent<Transform> OnDeath  => onDeath;
+  [SerializeField]
 
   protected Transform target;
+  [SerializeField]
+
+  protected string destroyAnimationName = "Destroy";
 
   public Transform Target { set { target = value; } }
 
@@ -21,11 +32,27 @@ public class Enemy : MonoBehaviour
   {
     health = GetComponent<Health>();
     animator = GetComponent<Animator>();
+    objectCollider = GetComponent<Collider>();
   }
 
   public virtual void  OnEnable()
   {
     health.InitializeHealth();
     currentState = State.Active;
+  }
+
+  public virtual void Destroy()
+  {
+    StopAllCoroutines();
+    StartCoroutine(DEstroyCoroutine());
+  }
+
+  private IEnumerator DEstroyCoroutine()
+  {
+    OnDeath?.Invoke(transform);
+    objectCollider.enabled = false;
+    animator.Play(destroyAnimationName, 0, 0f);
+    yield return animator.WaitForCurrentAnimation();
+    gameObject.SetActive(false);
   }
 }
