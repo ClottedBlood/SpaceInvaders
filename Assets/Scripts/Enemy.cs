@@ -24,6 +24,9 @@ public class Enemy : MonoBehaviour
   [SerializeField]
 
   private string destroySoundName = "asteroid_explode";
+  [SerializeField]
+
+  protected string appearSoundName;
 
   public Transform Target { set { target = value; } }
 
@@ -40,6 +43,7 @@ public class Enemy : MonoBehaviour
 
   public virtual void  OnEnable()
   {
+    SoundManager.instance.Play(appearSoundName);
     health.InitializeHealth();
     currentState = State.Active;
   }
@@ -47,10 +51,10 @@ public class Enemy : MonoBehaviour
   public virtual void Destroy()
   {
     StopAllCoroutines();
-    StartCoroutine(DEstroyCoroutine());
+    StartCoroutine(DestroyCoroutine());
   }
 
-  private IEnumerator DEstroyCoroutine()
+  private IEnumerator DestroyCoroutine()
   {
     currentState = State.Dead;
     SoundManager.instance.Play(destroySoundName);
