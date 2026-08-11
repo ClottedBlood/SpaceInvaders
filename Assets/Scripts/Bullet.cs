@@ -5,6 +5,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     
     private float speed = 10f;
+    [SerializeField]
+
+    private string tagToIgnore = "Player";
 
     private Rigidbody rb;
 
@@ -31,6 +34,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag(tagToIgnore)) return;
         gameObject.SetActive(false);
     }
 

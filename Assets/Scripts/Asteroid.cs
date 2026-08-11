@@ -7,12 +7,6 @@ public class Asteroid : Enemy
     private Rotate rotateScript;
     [SerializeField]
 
-    private float speed = 20F;
-    [SerializeField]
-
-    private float damage = 20f;
-    [SerializeField]
-
     private float distanceToTarget = 30f;
 
     public override void OnEnable()
@@ -48,7 +42,7 @@ public class Asteroid : Enemy
             Destroy();
         }
     }
-    public override void positionEnemy(){
+    public override void PositionEnemy(){
         Vector3 direction = Random.onUnitSphere;
         float distance = Random.Range(distanceToTarget, distanceToTarget +5f);
         transform.position = target.position + direction * distance;

@@ -37,7 +37,7 @@ public class EnemiesManager : MonoBehaviour
        Enemy enemy = PoolManager.Instance.GetObject(enemyData.enemyPrefab.gameObject,
        Vector3.zero, true).GetComponent<Enemy>();
        enemy.Target = target;
-       enemy.positionEnemy();
+       enemy.PositionEnemy();
     }
 
     private void HandleEnemyDeath(Transform enemyTransform)
