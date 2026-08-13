@@ -453,7 +453,7 @@ MonoBehaviour:
   damage: 20
   distanceFromTarget: 25
   pathLength: 300
-  bulletPrefab: {fileID: 7562858860230889206, guid: 7ef6a2197b9f75e4680b528c6f7d44c4, type: 3}
+  bulletPrefab: {fileID: 7562858860230889206, guid: 93e2736dae35de148938e7f7a9b22abf, type: 3}
   bulletPivot: {fileID: 8166402957530349807}
   randomDistanceMultipier: 0.3
   shootSoundName: Disparo

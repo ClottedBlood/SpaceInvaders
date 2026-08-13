@@ -72,6 +72,7 @@ public class EnemyShip : Enemy
    {
     if (currentState != State.Active  || target == null) return;
     transform.position += movementDirection * speed * Time.deltaTime;
+    CheckShootTarget();
     if (Vector3.Distance(transform.position,endPoint.position) < 0.1f)
     {
         PositionEnemy();
@@ -81,7 +82,7 @@ public class EnemyShip : Enemy
    private void CheckShootTarget()
    {
      if (hasShot || target == null) return;
-     if (Vector3.Distance(transform.position, target.position) >= distanceToShoot)
+     if (Vector3.Distance(transform.position, target.position) <= distanceToShoot)
      
     {
         hasShot = true;
@@ -91,6 +92,7 @@ public class EnemyShip : Enemy
 
    private void Shoot()
    {
+    SoundManager.instance.Play(shootSoundName);
     GameObject bullet = PoolManager.Instance.GetObject(bulletPrefab, bulletPivot.position, true);
     bullet.transform.LookAt(target);
     bullet.SetActive(true);
