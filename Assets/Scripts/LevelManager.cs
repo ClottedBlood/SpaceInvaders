@@ -9,7 +9,7 @@ public class LevelManager : ScriptableObject
 
     public int LevelIndex => levelIndex;
 
-    public bool IsPastLastLevel => levelIndex >= levels.Length - 1;
+    public bool IsPastLastLevel => levelIndex >= levels.Length;
 
     public void NextLevel()
 

@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
 
   private UnityEvent<Transform> onDeath = new UnityEvent<Transform>();
  
-  private UnityEvent<Transform> OnDeath  => onDeath;
+  public UnityEvent<Transform> OnDeath  => onDeath;
   [SerializeField]
 
   protected Transform target;
